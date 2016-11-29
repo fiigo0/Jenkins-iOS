@@ -22,6 +22,9 @@
 		1238F0DE1DEDF23500347169 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1238F0E11DEDF23500347169 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1238F0E31DEDF23500347169 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1238F0EC1DEDFEE800347169 /* environment_DEV.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment_DEV.plist; sourceTree = "<group>"; };
+		1238F0ED1DEDFF9000347169 /* environment_SYS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment_SYS.plist; sourceTree = "<group>"; };
+		1238F0EE1DEDFFA000347169 /* environment_PROD.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment_PROD.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +57,7 @@
 		1238F0D61DEDF23500347169 /* Jenkins */ = {
 			isa = PBXGroup;
 			children = (
+				1238F0EB1DEDFEC100347169 /* Configuration */,
 				1238F0D71DEDF23500347169 /* AppDelegate.swift */,
 				1238F0D91DEDF23500347169 /* ViewController.swift */,
 				1238F0DB1DEDF23500347169 /* Main.storyboard */,
@@ -62,6 +66,16 @@
 				1238F0E31DEDF23500347169 /* Info.plist */,
 			);
 			path = Jenkins;
+			sourceTree = "<group>";
+		};
+		1238F0EB1DEDFEC100347169 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				1238F0EC1DEDFEE800347169 /* environment_DEV.plist */,
+				1238F0ED1DEDFF9000347169 /* environment_SYS.plist */,
+				1238F0EE1DEDFFA000347169 /* environment_PROD.plist */,
+			);
+			name = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
