@@ -12,6 +12,7 @@
 		1238F0DD1DEDF23500347169 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1238F0DB1DEDF23500347169 /* Main.storyboard */; };
 		1238F0DF1DEDF23500347169 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1238F0DE1DEDF23500347169 /* Assets.xcassets */; };
 		1238F0E21DEDF23500347169 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1238F0E01DEDF23500347169 /* LaunchScreen.storyboard */; };
+		1238F0F01DEF83C500347169 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1238F0EF1DEF83C500347169 /* environment.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		1238F0EC1DEDFEE800347169 /* environment_DEV.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment_DEV.plist; sourceTree = "<group>"; };
 		1238F0ED1DEDFF9000347169 /* environment_SYS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment_SYS.plist; sourceTree = "<group>"; };
 		1238F0EE1DEDFFA000347169 /* environment_PROD.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = environment_PROD.plist; sourceTree = "<group>"; };
+		1238F0EF1DEF83C500347169 /* environment.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = environment.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				1238F0EC1DEDFEE800347169 /* environment_DEV.plist */,
 				1238F0ED1DEDFF9000347169 /* environment_SYS.plist */,
 				1238F0EE1DEDFFA000347169 /* environment_PROD.plist */,
+				1238F0EF1DEF83C500347169 /* environment.plist */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -138,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1238F0F01DEF83C500347169 /* environment.plist in Resources */,
 				1238F0E21DEDF23500347169 /* LaunchScreen.storyboard in Resources */,
 				1238F0DF1DEDF23500347169 /* Assets.xcassets in Resources */,
 				1238F0DD1DEDF23500347169 /* Main.storyboard in Resources */,
@@ -182,6 +186,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_DEV;
 				BDF_BUNDLE_ID = com.jado.Jenkins.DEV;
 				BDF_ENVIRONMENT = DEV;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -234,6 +239,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_PROD;
 				BDF_BUNDLE_ID = com.jado.Jenkins;
 				BDF_ENVIRONMENT = PROD;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -305,6 +311,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_SYS;
 				BDF_BUNDLE_ID = com.jado.Jenkins.SYS;
 				BDF_ENVIRONMENT = SYS;
 				CLANG_ANALYZER_NONNULL = YES;
