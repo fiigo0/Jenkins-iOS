@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		1238F0F11DEF85BC00347169 /* Environment Switch Script */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1238F0F21DEF85BC00347169 /* Build configuration list for PBXAggregateTarget "Environment Switch Script" */;
+			buildPhases = (
+				1238F0F81DEF85F000347169 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Environment Switch Script";
+			productName = "Environment Switch Script";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1238F0D81DEDF23500347169 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1238F0D71DEDF23500347169 /* AppDelegate.swift */; };
 		1238F0DA1DEDF23500347169 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1238F0D91DEDF23500347169 /* ViewController.swift */; };
@@ -14,6 +28,16 @@
 		1238F0E21DEDF23500347169 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1238F0E01DEDF23500347169 /* LaunchScreen.storyboard */; };
 		1238F0F01DEF83C500347169 /* environment.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1238F0EF1DEF83C500347169 /* environment.plist */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1238F0F61DEF85D900347169 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1238F0CC1DEDF23500347169 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1238F0F11DEF85BC00347169;
+			remoteInfo = "Environment Switch Script";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1238F0D41DEDF23500347169 /* Jenkins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jenkins.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +119,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1238F0F71DEF85D900347169 /* PBXTargetDependency */,
 			);
 			name = Jenkins;
 			productName = Jenkins;
@@ -116,6 +141,11 @@
 						DevelopmentTeam = DRAP9QU2JX;
 						ProvisioningStyle = Automatic;
 					};
+					1238F0F11DEF85BC00347169 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = DRAP9QU2JX;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1238F0CF1DEDF23500347169 /* Build configuration list for PBXProject "Jenkins" */;
@@ -132,6 +162,7 @@
 			projectRoot = "";
 			targets = (
 				1238F0D31DEDF23500347169 /* Jenkins */,
+				1238F0F11DEF85BC00347169 /* Environment Switch Script */,
 			);
 		};
 /* End PBXProject section */
@@ -150,6 +181,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1238F0F81DEF85F000347169 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "dir=${PROJECT_DIR}/${PROJECT_NAME}\necho \"Starting environment configuration for project: \" $dir\n\n# environment variable from value passed in to xcodebuild.\n# if not specified, we default to DEV\nenv=${BDF_ENVIRONMENT}\nif [ -z \"$env\" ]\nthen\nenv=\"DEV\"\nfi\necho \"Using $env environment\"\n\n# copy the environment-specific file\ncp $dir/environment_$env.plist $dir/environment.plist\n\n# Date and time that we are running this build\nbuildDate=`date \"+%F %H:%M:%S\"`\ntodaysDay=`date \"+%d\"`\n\n# app settings\nappName=`/usr/libexec/PlistBuddy -c \"Print :appName\" \"$dir/environment.plist\"`\nversion=`/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"${PROJECT_DIR}/${PROJECT_NAME}/Info.plist\"`\n\nif [ \"$env\" != \"PROD\" ]\nthen\n# need to dynamically append today's day for non-prod\nappName=\"$appName $todaysDay\"\n# Last hash from the current branch\nversion=`git log --pretty=format:\"%h\" -1`\nfi\n\n# Build the preprocess file\ncd ${PROJECT_DIR}/${PROJECT_NAME}\npreprocessFile=\"environment_preprocess.h\"\necho \"Creating header file\"\n\necho -e \"//-----------------------------------------\" > $preprocessFile\necho -e \"// Auto generated file\" >> $preprocessFile\necho -e \"// Created $buildDate\" >> $preprocessFile\necho -e \"//-----------------------------------------\" >> $preprocessFile\necho -e \"\" >> $preprocessFile\necho -e \"#define BDF_ENVIRONMENT              $env\" >> $preprocessFile\necho -e \"#define BDF_ENVIRONMENT_LAST_COMMIT  $version\" >> $preprocessFile\necho -e \"#define BDF_ENVIRONMENT_APP_NAME     $appName\" >> $preprocessFile\n\n# dump out file to build log\ncat $preprocessFile\n\n# Force the system to process the plist file\necho \"Touching plist at: \" ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\ntouch ${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}-Info.plist\n\n# done\necho \"Done.\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1238F0D01DEDF23500347169 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -161,6 +208,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1238F0F71DEF85D900347169 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1238F0F11DEF85BC00347169 /* Environment Switch Script */;
+			targetProxy = 1238F0F61DEF85D900347169 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1238F0DB1DEDF23500347169 /* Main.storyboard */ = {
@@ -287,6 +342,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DRAP9QU2JX;
 				INFOPLIST_FILE = Jenkins/Info.plist;
+				INFOPLIST_PREFIX_HEADER = Jenkins/environment_preprocess.h;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jado.Jenkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,6 +357,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DRAP9QU2JX;
 				INFOPLIST_FILE = Jenkins/Info.plist;
+				INFOPLIST_PREFIX_HEADER = Jenkins/environment_preprocess.h;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jado.Jenkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -366,12 +425,38 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DRAP9QU2JX;
 				INFOPLIST_FILE = Jenkins/Info.plist;
+				INFOPLIST_PREFIX_HEADER = Jenkins/environment_preprocess.h;
+				INFOPLIST_PREPROCESS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jado.Jenkins;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = SYS;
+		};
+		1238F0F31DEF85BC00347169 /* DEV */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = DRAP9QU2JX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = DEV;
+		};
+		1238F0F41DEF85BC00347169 /* SYS */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = DRAP9QU2JX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = SYS;
+		};
+		1238F0F51DEF85BC00347169 /* PROD */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = DRAP9QU2JX;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = PROD;
 		};
 /* End XCBuildConfiguration section */
 
@@ -395,6 +480,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = PROD;
+		};
+		1238F0F21DEF85BC00347169 /* Build configuration list for PBXAggregateTarget "Environment Switch Script" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1238F0F31DEF85BC00347169 /* DEV */,
+				1238F0F41DEF85BC00347169 /* SYS */,
+				1238F0F51DEF85BC00347169 /* PROD */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

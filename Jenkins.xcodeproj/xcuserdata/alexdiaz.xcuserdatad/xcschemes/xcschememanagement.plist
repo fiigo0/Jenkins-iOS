@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Environment Switch Script.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>PROD.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1238F0D31DEDF23500347169</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1238F0F11DEF85BC00347169</key>
 		<dict>
 			<key>primary</key>
 			<true/>
